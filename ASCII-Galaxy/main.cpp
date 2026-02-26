@@ -370,9 +370,13 @@ int main(int argc, const char* argv[]) {
         fputs(outbuf, stdout);
         fflush(stdout);
 
-        A += step;
         frame++;
-        if (max_frames == 0) usleep(33000);
+        if (max_frames > 0)
+            A = frame * step;  // direct calc avoids float drift → seamless loop
+        else {
+            A += step;
+            usleep(33000);
+        }
     }
 
     printf("\x1b[0m\x1b[?25h\n"); // restore cursor

@@ -11,7 +11,7 @@ CELL_W, CELL_H = 8, 15
 BG_COLOR   = (0, 0, 0)
 FONT_PATH  = "/System/Library/Fonts/Menlo.ttc"
 FONT_SIZE  = 14
-DURATION   = 80   # ms per frame (slower rotation)
+DURATION   = 100  # ms per frame (slower rotation)
 OUT_FILE   = "galaxy.gif"
 
 font = ImageFont.truetype(FONT_PATH, FONT_SIZE)
