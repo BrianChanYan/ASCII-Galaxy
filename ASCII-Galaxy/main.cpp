@@ -237,6 +237,7 @@ int main(int argc, const char* argv[]) {
     int max_frames  = 0;
     int forced_cols = 0;
     int forced_rows = 0;
+    float step = 0.012f;
     for (int i = 1; i < argc; i++) {
         if (!strcmp(argv[i], "--frames") && i + 1 < argc)
             max_frames = atoi(argv[++i]);
@@ -244,6 +245,8 @@ int main(int argc, const char* argv[]) {
             forced_cols = atoi(argv[++i]);
         else if (!strcmp(argv[i], "--rows") && i + 1 < argc)
             forced_rows = atoi(argv[++i]);
+        else if (!strcmp(argv[i], "--step") && i + 1 < argc)
+            step = atof(argv[++i]);
     }
 
     signal(SIGINT,   on_signal);
@@ -367,7 +370,7 @@ int main(int argc, const char* argv[]) {
         fputs(outbuf, stdout);
         fflush(stdout);
 
-        A += 0.012f;
+        A += step;
         frame++;
         if (max_frames == 0) usleep(33000);
     }

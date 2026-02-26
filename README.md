@@ -2,7 +2,7 @@
 
 3D spiral galaxy animation rendered in ASCII with true color ANSI, coded in Cpp.
 
-Built by adapting the rendering technique from [a1k0n's donut.c](https://www.a1k0n.net/2011/07/20/donut-math.html)
+Built by adapting the rendering technique from [a1k0n's donut.c](https://www.a1k0n.net/2006/09/15/obfuscated-c-donut.html)
 
 ![ASCII Galaxy Animation](galaxy.gif)
 
@@ -16,12 +16,8 @@ Built by adapting the rendering technique from [a1k0n's donut.c](https://www.a1k
 
 4. **Color** — Each pixel blends warm gold (bulge), cool blue (spiral arms), and pink (HII regions) via ANSI 24-bit true color escape codes.
 
-## Features
-
-- Auto-detects terminal size, adapts on window resize (`SIGWINCH`)
-- ~30 fps smooth rotation
-- True color ANSI (best in Terminal.app, iTerm2, or any modern terminal)
+5. **Auto-resize** — Detects terminal size and adapts on window resize (`SIGWINCH`), rotating at ~30 fps.
 
 ## Reference
 
-- [Donut math: how donut.c works](https://www.a1k0n.net/2011/07/20/donut-math.html) — the original technique this project is based on
+- [Donut math: how donut.c works](https://www.a1k0n.net/2006/09/15/obfuscated-c-donut.html) — the original technique this project is based on
