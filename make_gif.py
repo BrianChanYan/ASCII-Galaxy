@@ -11,6 +11,7 @@ CELL_W, CELL_H = 8, 15
 BG_COLOR   = (0, 0, 0)
 FONT_PATH  = "/System/Library/Fonts/Menlo.ttc"
 FONT_SIZE  = 14
+DURATION   = 80   # ms per frame (slower rotation)
 OUT_FILE   = "galaxy.gif"
 
 font = ImageFont.truetype(FONT_PATH, FONT_SIZE)
@@ -28,9 +29,11 @@ proc = subprocess.run(
 raw = proc.stdout
 
 # Split output into per-frame chunks (each frame starts with ESC[H)
-chunks = re.split(r'\x1b\[H', raw)
+# First chunk before any ESC[H is init garbage (cursor hide etc), skip it
+chunks = re.split(r'\x1b\[H', raw)[1:]
+# Strip trailing cursor restore from last chunk
+chunks = [re.sub(r'\x1b\[\?25[hl]', '', c) for c in chunks]
 chunks = [c for c in chunks if c.strip()]
-
 chunks = chunks[:FRAMES]
 print(f"Using {len(chunks)} frames")
 
@@ -97,7 +100,7 @@ images[0].save(
     OUT_FILE,
     save_all=True,
     append_images=images[1:],
-    duration=33,
+    duration=DURATION,
     loop=0,
     optimize=False
 )
