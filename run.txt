@@ -1,0 +1,1 @@
+cd ASCII-Galaxy/ASCII-Galaxy && ./galaxy
